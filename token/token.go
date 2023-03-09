@@ -28,6 +28,18 @@ const (
 	RBRACE = "}"
 
 	// キーワード
-	FUNCITON = "FUNCTION"
+	FUNCTION = "FUNCTION"
 	LET      = "LET"
 )
+
+var keywards = map[string]TokenType{
+	"fn":  FUNCTION,
+	"let": LET,
+}
+
+func LookupIdent(ident string) TokenType {
+	if tok, ok := keywards[ident]; ok {
+		return tok
+	}
+	return IDENT
+}
